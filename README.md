@@ -1,70 +1,51 @@
+# Next.js mini demo
 
-# Next.js Mini Demo (App Router)
+Just a small Next.js project made for learning and testing basic stuff.  
+It shows how server-side rendering, simple API routes and client-side parts work together in one app.
 
-A tiny but complete Next.js app that shows:
-- Server rendering (SSR) via Server Components
-- Built-in API routes (mini backend)
-- A Client Component with a form (CSR)
-- Dynamic routes
-- Loading and error UI
+This example includes:
+- server-side rendering (SSR)
+- API routes (a small backend in the same app)
+- client component with a form
+- dynamic routes
+- basic loading and error handling
+
+Nothing fancy, just a simple working demo.
+
+---
 
 ## How to run locally
 
-1. **Install dependencies**
-   ```bash
+To run the project on your machine:
+
+1. Install dependencies:
    npm install
-   ```
+----
 
-2. **Start the dev server**
-   ```bash
+2. Start the development server:
    npm run dev
-   ```
+----
 
-3. **Open the app**
-   - http://localhost:3000/ — Home page (SSR)
-   - http://localhost:3000/todos — Todos list + client-side form (SSR + CSR)
-   - http://localhost:3000/todos/123 — Dynamic route
-   - http://localhost:3000/api/todos — JSON from API route
+3. Open the app in your browser:
+
+http://localhost:3000
 
 ## Project structure
 
-```
 app/
-  layout.tsx           # Global HTML frame (header/footer)
-  page.tsx             # Home (Server Component / SSR)
-  loading.tsx          # Loading UI for this segment
-  error.tsx            # Error UI for this segment
+  layout.tsx         - main layout with header and footer
+  page.tsx           - home page rendered on the server
+  loading.tsx        - loading screen when content is fetched
+  error.tsx          - simple error UI
   components/
-    AddTodo.tsx        # Client Component (form posting to /api)
+    AddTodo.tsx      - client-side form component
   todos/
-    page.tsx           # Todos list (SSR, reads from server module)
-    [id]/
-      page.tsx         # Dynamic route: /todos/:id
+    page.tsx         - todo list page (SSR)
+    [id]/page.tsx    - dynamic page for one todo
   api/
-    todos/
-      route.ts         # API route (GET list, POST new)
+    todos/route.ts   - API route (GET list, POST new todo)
 lib/
-  todos.ts             # In-memory store and helpers (shared by API and SSR pages)
+  todos.ts           - fake in-memory data store used by both SSR and API
 
-public/                # Static assets (optional)
-app/globals.css        # Basic global styles
-```
-
-## Key ideas explained
-
-- **Server Components** (default under `app/`) render on the server, so you can safely read from DBs or server-only modules and send ready HTML.
-- **Client Components** (`"use client"`) run in the browser and can use React hooks. The form in `AddTodo.tsx` calls `/api/todos` and then triggers `router.refresh()` to re-fetch Server Components.
-- **API Routes** under `app/api/**/route.ts` let you build small backend endpoints next to your UI.
-- **Dynamic routes** are folder names in square brackets, like `app/todos/[id]/page.tsx` mapping to `/todos/:id`.
-
-## Production notes
-
-- This repo uses an **in-memory store** for simplicity. In a real app, replace it with a database call (e.g., direct import in Server Components and in the API route).
-- Keep secrets on the server side only (Server Components or API routes). Avoid exposing them to Client Components.
-
-## Deploy
-
-- You can deploy on any platform that supports Next.js. Vercel is the easiest:
-  1. Push this repo to Git.
-  2. Import it in Vercel.
-  3. Use the default Next.js settings.
+public/              - optional static files
+app/globals.css      - global styles for the app
