@@ -49,3 +49,24 @@ lib/
 
 public/              - optional static files
 app/globals.css      - global styles for the app
+
+----------------------
+
+Mała aplikacja w Next.js.
+Pokazuje, polaczenie frontend i backend w jednym miejscu.
+
+Na stronie głównej widać prosty tekst, który jest renderowany po stronie serwera (SSR).
+Jest też strona z listą zadań (To-Do).
+Na tej stronie możesz dodać nowe zadanie w formularzu — to działa po stronie przeglądarki (CSR).
+Wszystkie zadania są przechowywane w pamięci serwera, więc po restarcie znikają.
+Projekt ma też prosty endpoint API pod /api/todos, który zwraca listę zadań w formacie JSON.
+Dodatkowo jest przykład dynamicznej trasy /todos/[id], która pokazuje, jak tworzyć strony z parametrami.
+
+Całość to tylko przykład — nie ma bazy danych ani logowania.
+
+Celem  jest pokazać podstawy Next.js:
+
+- jak działa renderowanie na serwerze,
+- jak dodać własne API,
+- jak korzystać z komponentów klienckich i serwerowych,
+- jak tworzyć trasy i podstrony.
